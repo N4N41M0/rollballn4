@@ -42,7 +42,7 @@ public class playercontroller : MonoBehaviour
                     collectingtext.text = "Jumping...";
                     if (grounded == true)
                     {
-                        solid.velocity += new Vector3(0, 1.0f, 0) * jumpmod;
+                        solid.velocity += new Vector3(0, 2.8f, 0) * jumpmod;
                     }
                     holdingjump = true;
             }
@@ -82,10 +82,16 @@ public class playercontroller : MonoBehaviour
             collectingtext.text = "";
             grounded =true;
         }
-        else
-        { grounded = false; }
     }
 
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("ground"))
+        {
+            grounded = false;
+        }
+
+    }
 
     void SetCountText ()
     {
