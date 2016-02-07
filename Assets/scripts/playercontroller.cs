@@ -13,6 +13,8 @@ public class playercontroller : MonoBehaviour
     public float jumpmod;
     public float speed;
     private float timer;
+    private bool grounded = true;
+    private bool holdingjump = false;
     private Rigidbody solid;
     private int count;
     void Start()
@@ -30,20 +32,40 @@ public class playercontroller : MonoBehaviour
             timer /= 100;
             return timer;
             }
+
+    void Update()
+    {
+        if (Input.GetAxisRaw("Jump") != 0)
+        {
+            if (holdingjump == false)
+            {
+                    collectingtext.text = "Jumping...";
+                    if (grounded == true)
+                    {
+                        solid.velocity += new Vector3(0, 1.0f, 0) * jumpmod;
+                    }
+                    holdingjump = true;
+            }
+        }
+        if (Input.GetAxisRaw("Jump") == 0)
+        {
+            holdingjump = false;
+        }
+    }
+
     void FixedUpdate()
     {
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
-        float moveY = Input.GetAxis("Jump");
+        //float moveY = Input.GetAxis("Jump");
         
 
        
 
 
-        Vector3 movement = new Vector3(moveX, (moveY * jumpmod), moveZ);
+        Vector3 movement = new Vector3(moveX, (0 * jumpmod), moveZ);
         if (Input.GetKey(KeyCode.Escape)) Application.Quit();
         if (Input.GetKey("j")) SceneManager.LoadScene(0);
-        if (Input.GetKey(KeyCode.Space)) collectingtext.text = "Jumping...";
         solid.AddForce(movement * speed);
     }
   
@@ -58,7 +80,10 @@ public class playercontroller : MonoBehaviour
         if (other.gameObject.CompareTag("ground"))
         {
             collectingtext.text = "";
+            grounded =true;
         }
+        else
+        { grounded = false; }
     }
 
 
@@ -73,3 +98,12 @@ public class playercontroller : MonoBehaviour
 
     }
 }
+
+
+
+
+
+
+
+
+
