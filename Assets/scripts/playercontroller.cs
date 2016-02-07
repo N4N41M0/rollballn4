@@ -31,13 +31,13 @@ public class playercontroller : MonoBehaviour
         float moveY = Input.GetAxis("Jump");
         float timer = Time.time;
 
-     
         float rtimer (float timer) =
             {
             timer *= 100;
             timer = Mathf.Round(timer);
             timer /= 100;
             }
+
 
         Vector3 movement = new Vector3(moveX, (moveY * jumpmod), moveZ);
         if (Input.GetKey(KeyCode.Escape)) Application.Quit();
