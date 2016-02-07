@@ -53,12 +53,7 @@ public class playercontroller : MonoBehaviour
   
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("pickup"))
-        {
-            other.gameObject.SetActive(false);
-            //LevelManager.instance.AddCount(1);
-            return;
-        }
+        
         if (other.gameObject.CompareTag("ground"))
         {
             grounded =true;

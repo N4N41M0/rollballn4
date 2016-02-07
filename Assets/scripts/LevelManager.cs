@@ -16,7 +16,7 @@ public class LevelManager : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        if (instance != null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -67,5 +67,11 @@ public class LevelManager : MonoBehaviour {
             timer = Time.time;
             wintext.text = "WINNER! You collected " + count.ToString() + " cubes!" + " " + RTimer(timer) + " seconds. " + "Escape to exit.";
         }
+    }
+
+    void OnDestroy()
+    {
+        instance = null;
+        Debug.Log("LevelManagerDestroyed");
     }
 }
