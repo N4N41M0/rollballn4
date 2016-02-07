@@ -42,6 +42,7 @@ public class playercontroller : MonoBehaviour
 
         Vector3 movement = new Vector3(moveX, (moveY * jumpmod), moveZ);
         if (Input.GetKey(KeyCode.Escape)) Application.Quit();
+        if (Input.GetKey("j")) Application.LoadLevel(0);
         if (Input.GetKey(KeyCode.Space)) collectingtext.text = "Jumping...";
         solid.AddForce(movement * speed);
     }
