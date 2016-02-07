@@ -69,6 +69,15 @@ public class playercontroller : MonoBehaviour
 
     }
 
+    public void UseGravity(bool state)
+    {
+        solid.useGravity = state;
+    }
+    public void SetGrounded(bool state)
+    {
+        grounded = state;
+    }
+
 }
 
 
