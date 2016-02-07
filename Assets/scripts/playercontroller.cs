@@ -13,7 +13,6 @@ public class playercontroller : MonoBehaviour
     public float jumpmod;
     public float speed;
     private float timer;
-    private float rtimer;
     private Rigidbody solid;
     private int count;
     void Start()
@@ -24,19 +23,21 @@ public class playercontroller : MonoBehaviour
         wintext.text = "";
         float value = Time.time;
     }
+    float RTimer (float timer)
+            {
+            timer *= 100;
+            timer = Mathf.Round(timer);
+            timer /= 100;
+            return timer;
+            }
     void FixedUpdate()
     {
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
         float moveY = Input.GetAxis("Jump");
-        float timer = Time.time;
+        
 
-        float rtimer (float timer) =
-            {
-            timer *= 100;
-            timer = Mathf.Round(timer);
-            timer /= 100;
-            }
+       
 
 
         Vector3 movement = new Vector3(moveX, (moveY * jumpmod), moveZ);
@@ -65,7 +66,8 @@ public class playercontroller : MonoBehaviour
         counttext.text = "Collected: " + count.ToString();
         if (count >= 8)
         {
-            wintext.text = "WINNER! You collected " + count.ToString() + " cubes!" + " " + rtimer + " seconds. " + "Escape to exit.";
+            timer = Time.time;
+            wintext.text = "WINNER! You collected " + count.ToString() + " cubes!" + " " + RTimer(timer) + " seconds. " + "Escape to exit.";
         }
 
     }
