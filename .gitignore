@@ -1,0 +1,11 @@
+ProjectSettings/
+Library/
+Temp/
+rollball_Data/
+obj/
+rollball.exe
+.vs/Rollball/v14/.suo
+Assembly-CSharp.csproj
+Rollball.sln
+player_win_x86.pdb
+player_win_x86_s.pdb
