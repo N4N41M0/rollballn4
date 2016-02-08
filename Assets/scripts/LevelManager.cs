@@ -17,6 +17,8 @@ public class LevelManager : MonoBehaviour
     public Text counttext;
     public Text wintext;
 
+    public GameObject allPickUps;
+    public int pickupsNeeded = 0;
     //this variable will hold the current game state
     private GameState gameState;
     //This will hold the previous game state
@@ -38,6 +40,7 @@ public class LevelManager : MonoBehaviour
             Destroy(this.gameObject);
             return;
         }
+        pickupsNeeded = allPickUps.transform.childCount;
         prevState = gameState = GameState.MainMenu;
         SetCountText();
     }
@@ -93,7 +96,7 @@ public class LevelManager : MonoBehaviour
 
     void CheckWin()
     {
-        if (count >= 8)
+        if (count >= pickupsNeeded)
         {
             timer = Time.time;
             wintext.text = "WINNER! You collected " + count.ToString() + " cubes!" + " " + RTimer(timer) + " seconds. " + "Escape to exit.";
