@@ -8,13 +8,14 @@ public class playercontroller : MonoBehaviour
 
     public float jumpmod;
     public float speed;
+
     private bool grounded = true;
     private bool holdingjump = false;
     private Rigidbody solid;
+
     void Start()
     {
         solid = GetComponent<Rigidbody>();
-        float value = Time.time;
     }
 
 
@@ -42,11 +43,6 @@ public class playercontroller : MonoBehaviour
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
         //float moveY = Input.GetAxis("Jump");
-        
-
-       
-
-
         Vector3 movement = new Vector3(moveX, (0 * jumpmod), moveZ);
         solid.AddForce(movement * speed);
     }
